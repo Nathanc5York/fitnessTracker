@@ -24,8 +24,15 @@ public class ExerciseTests
     @Test
     public void basicStrengthExercise() {
         StrengthExercise se = new StrengthExercise("Push Ups", Intensity.MEDIUM, 20, 0, "Chest, Triceps", "lbs");
-        String expected = "Category: Strength\nName: Push Ups\nTargeted Muscles: Chest, Triceps\nWeight: 0 lbs\nReps: 20\nIntensity: MEDIUM\nCalories Burned: 0.00";
-        assertTrue(se.toString().equals(expected));
+        String expected = "Category: Strength\nName: Push Ups\nTargeted Muscles: Chest, Triceps\nWeight: 0 lbs\nReps: 20\nIntensity: MEDIUM\nCalories Burned: 2.00";
+        assertTrue(se.toString(), se.toString().equals(expected));
+    }
+
+    @Test
+    public void strengthExerciseCalorieTest(){
+        StrengthExercise se = new StrengthExercise("Bench Press", Intensity.HIGH, 6, 125, "Chest", "lbs");
+        double expectedCalories = 6 * 0.15 + (125 * 0.15); // 0.15 per rep + 0.15 per pound
+        assertTrue(se.caloriesBurned() == expectedCalories);
     }
 
     @Test
@@ -64,17 +71,4 @@ public class ExerciseTests
         Exercise ce = ExerciseFactory.createExercise("CardioExercise", cardioParams);
         assertTrue(ce instanceof CardioExercise);
     }
-
-    // @Test
-    // public void workoutLogTest(){
-    //     WorkoutLog log = new WorkoutLog();
-    //     SaveObserver saver = new SaveObserver();
-    //     log.addObserver(saver);
-    //     ArrayList<Exercise> exercises = new ArrayList<>();
-    //     exercises.add(new StrengthExercise("Push Ups", Intensity.MEDIUM, 20, 0, "Chest, Triceps", "lbs"));
-    //     exercises.add(new CardioExercise("Running", Intensity.HIGH, 30));
-    //     exercises.add(new StrengthExercise("Squats", Intensity.MEDIUM, 15, 0, "Quadriceps", "lbs"));
-    //     Workout workout = new Workout("Morning Routine", exercises);
-    //     log.newestWorkout(workout);
-    // }
 }

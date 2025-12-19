@@ -13,10 +13,10 @@ import java.util.Map;
  */
 public class ExerciseFactory {
     /**
-     * 
+     * Given a type and parameters, creates and returns the appropriate Exercise object.
      * @param type
-     * @param params
-     * @return
+     * @param params a map of parameter names to their values
+     * @return an Exercise object
      */
     public static Exercise createExercise(String type, Map<String, Object> params){
         switch (type.trim().toUpperCase()){
@@ -32,9 +32,9 @@ public class ExerciseFactory {
         return null;
     }
     /**
-     * 
-     * @param params
-     * @return
+     * Creates a StrengthExercise from a map of parameters.
+     * @param params a map of parameter names to their values
+     * @return a StrengthExercise object
      */
     private static StrengthExercise createStrengthExercise(Map<String, Object> params){
         String name = getRequiredString(params, "name");
@@ -47,9 +47,9 @@ public class ExerciseFactory {
         return new StrengthExercise(name, intensity, reps, weight, targetedMuscles, weightUnit);
     }
     /**
-     * 
+     * Creates a CardioExercise from a map of parameters.
      * @param params
-     * @return
+     * @return a CardioExercise object
      */
     private static CardioExercise createCardioExercise(Map<String, Object> params){
         String name = getRequiredString(params, "name");
@@ -59,6 +59,12 @@ public class ExerciseFactory {
         return new CardioExercise(name, intensity, durationMinutes);
     }
 
+    /**
+     * Retrieves and validates a String parameter from the map.
+     * @param params
+     * @param key
+     * @return a valid String 
+     */
     private static String getRequiredString(Map<String, Object> params, String key){
         Object value = params.get(key);
         if (value == null){
@@ -74,6 +80,12 @@ public class ExerciseFactory {
         return str.trim();
     }
 
+    /**
+     * Retrieves and validates an integer from the map.
+     * @param params
+     * @param key
+     * @return a valid integer
+     */
     private static int getRequiredInt(Map<String, Object> params, String key){
         Object value = params.get(key);
         if (value == null){
@@ -96,6 +108,12 @@ public class ExerciseFactory {
         throw new IllegalArgumentException("Parameter " + key + " must be an integer.");
     }
 
+    /**
+     * Retrieves and validates an Intensity level from the map.
+     * @param params
+     * @param key
+     * @return a valid Intensity level
+     */
     private static Intensity getRequiredIntensity(Map<String, Object> params, String key){
         Object value = params.get(key);
         if (value == null){

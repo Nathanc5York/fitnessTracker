@@ -1,12 +1,24 @@
 package io.github.nathanc5york.model;
 import io.github.nathanc5york.model.Intensity;
 /**
- * 
+ * Represents a Strength Exercise with input validation and a calorie calculation method.
+ * @author Nathan Chung
+ * @version 1.0
+ * @since 2025-12-18
  */
 public class StrengthExercise extends Exercise {
     private int reps, weight;
     private String targetedMuscles, weightUnit;
 
+    /**
+     * A basic constructor for StrengthExercise.
+     * @param name
+     * @param intensity
+     * @param reps
+     * @param weight
+     * @param targetedMuscles
+     * @param weightUnit
+     */
     public StrengthExercise(String name, Intensity intensity, int reps, int weight, String targetedMuscles, String weightUnit) {
         super(name, intensity);
         this.reps = validateInt(reps);
@@ -15,6 +27,11 @@ public class StrengthExercise extends Exercise {
         this.weightUnit = validateWeight(weightUnit);
     }
 
+    /**
+     * Validates the weight unit input by checking if it is either "kg" or "lbs".
+     * @param input
+     * @return
+     */
     public String validateWeight(String input){
         if (input.toLowerCase() == "kg" || input.toLowerCase() == "lbs"){
             return input.toLowerCase();
@@ -24,15 +41,19 @@ public class StrengthExercise extends Exercise {
         }
     }
 
+    /**
+     * Calculates the calories burned during the strength exercise based on intensity, reps, and weight.
+     * @return the calculated calories burned
+     */
     public double caloriesBurned(){
         if (intensity == Intensity.LOW){
-            return reps * weight * 0.05;
+            return reps * 0.05 + (weight * 0.1);
         }
         else if (intensity == Intensity.MEDIUM){
-            return reps * weight * 0.1;
+            return reps * 0.1 + (weight * 0.12);
         }
         else {
-            return reps * weight * 0.15;
+            return reps * 0.15 + (weight * 0.15);
         }
     }
 

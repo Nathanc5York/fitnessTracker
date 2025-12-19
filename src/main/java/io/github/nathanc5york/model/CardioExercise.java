@@ -1,7 +1,10 @@
 package io.github.nathanc5york.model;
 import io.github.nathanc5york.model.Intensity;
 /**
- * 
+ * Represents a Cardio Exercise with input validation and a calorie calculation method.
+ * @author Nathan Chung
+ * @version 1.0
+ * @since 2025-12-18
  */
 public class CardioExercise extends Exercise{
     private int durationMinutes;
@@ -10,7 +13,10 @@ public class CardioExercise extends Exercise{
         super(name, intensity);
         this.durationMinutes = validateInt(durationMinutes);
     }
-
+    /**
+     * Calculates the calories burned during the cardio exercise based on intensity and duration.
+     * @return the calculated calories burned
+     */
     public double caloriesBurned(){
         if (intensity == Intensity.LOW){
             return durationMinutes * 2;

@@ -1,6 +1,7 @@
 io\github\nathanc5york\model\Intensity.class
 io\github\nathanc5york\observer\SaveObserver.class
 io\github\nathanc5york\model\StrengthExercise.class
+io\github\nathanc5york\demonstration\ApplicationCheck.class
 io\github\nathanc5york\factory\ExerciseFactory.class
 io\github\nathanc5york\model\CardioExercise.class
 io\github\nathanc5york\observer\Observer.class
